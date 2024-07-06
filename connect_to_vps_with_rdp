@@ -56,3 +56,5 @@ test -x /etc/X11/Xsession && exec /etc/X11/Xsession
 exec /bin/sh /etc/X11/Xsession
 
 ```
+step 5 (restart xrdp):
+systemctl restart xrdp
