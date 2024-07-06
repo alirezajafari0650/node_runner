@@ -1,3 +1,6 @@
+step 0 (installing remina):
+sudo apt-get install remmina remmina-plugin-rdp remmina-plugin-vnc remmina-plugin-gnome remmina-plugin-secret
+
 step 1 (connecting to the vps): 
 ssh root@185.1.2.55
 
