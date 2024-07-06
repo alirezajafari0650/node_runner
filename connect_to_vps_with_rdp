@@ -1,2 +1,58 @@
+step 1 (connecting to the vps): 
+ssh root@185.1.2.55
+
+step 2 (install RDP server):
 apt update
 apt install xrdp -y
+systemctl start xrdp
+systemctl enable xrdp
+systemctl status xrdp
+
+step 3 (configure firewall rules):
+ufw allow 3389/tcp
+ufw reload
+ufw status
+
+step 4 (configure xrdp and desktop environment):
+apt install xfce4 xfce4-goodies -y
+vim /etc/xrdp/startwm.sh
+#edit the /etc/xrdp/startwm.sh file like this :
+before :
+```
+#!/bin/sh
+# xrdp X session start script (c) 2015, 2017, 2021 mirabilos
+# published under The MirOS Licence
+
+# Rely on /etc/pam.d/xrdp-sesman using pam_env to load both
+# /etc/environment and /etc/default/locale to initialise the
+# locale and the user environment properly.
+
+if test -r /etc/profile; then
+        . /etc/profile
+fi
+
+test -x /etc/X11/Xsession && exec /etc/X11/Xsession
+exec /bin/sh /etc/X11/Xsession
+```
+after :
+```
+#!/bin/sh
+# xrdp X session start script (c) 2015, 2017, 2021 mirabilos
+# published under The MirOS Licence
+
+# Rely on /etc/pam.d/xrdp-sesman using pam_env to load both
+# /etc/environment and /etc/default/locale to initialise the
+# locale and the user environment properly.
+
+if test -r /etc/profile; then
+        . /etc/profile
+fi
+
+# Start XFCE
+startxfce4 &
+
+# Fall back to default X session if XFCE fails
+test -x /etc/X11/Xsession && exec /etc/X11/Xsession
+exec /bin/sh /etc/X11/Xsession
+
+```
