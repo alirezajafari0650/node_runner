@@ -1,0 +1,5 @@
+sudo apt install tmux
+tmux
+curl -sL1 https://nubit.sh | bash
+tmux ls
+tmux attach -t 0
