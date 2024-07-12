@@ -1,0 +1,5 @@
+sudo apt update
+sudo apt install curl
+curl -sL https://gist.githubusercontent.com/NodeFarmer/55f2f477b0afe06afefc6be919462e9e/raw/rivalz.sh | bash -s username password
+curl -sL https://gist.githubusercontent.com/NodeFarmer/64df55760e2d0ffa2d888dc6198df923/raw/rivalzVPSFix.sh | bash
+htop
